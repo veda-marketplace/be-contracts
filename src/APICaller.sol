@@ -18,8 +18,8 @@ contract APICaller is ChainlinkClient, ConfirmedOwner {
      * @notice Initialize the link token and target oracle
      */
     constructor(address _oracle, bytes32 _jobId, uint256 _fee, address _link) ConfirmedOwner(msg.sender) {
-        _setChainlinkToken(_link);
-        _setChainlinkOracle(_oracle);
+        setChainlinkToken(_link);
+        setChainlinkOracle(_oracle);
         jobId = _jobId;
         fee = _fee; // Fee is in LINK
     }
@@ -28,10 +28,10 @@ contract APICaller is ChainlinkClient, ConfirmedOwner {
      * Create a Chainlink request to retrieve API response, find the target data
      */
     function requestData(string memory _url) public returns (bytes32 requestId) {
-        Chainlink.Request memory request = _buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
-        request._add("get", _url);
-        request._add("path", "result");
-        return _sendChainlinkRequest(request, fee);
+        Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
+        request.add("get", _url);
+        request.add("path", "result");
+        return sendChainlinkRequest(request, fee);
     }
 
     /**
@@ -45,7 +45,7 @@ contract APICaller is ChainlinkClient, ConfirmedOwner {
      * Allow withdraw of Link tokens from the contract
      */
     function withdrawLink() public onlyOwner {
-        LinkTokenInterface link = LinkTokenInterface(_chainlinkTokenAddress());
+        LinkTokenInterface link = LinkTokenInterface(chainlinkTokenAddress());
         require(link.transfer(msg.sender, link.balanceOf(address(this))), "Unable to transfer");
     }
 }
