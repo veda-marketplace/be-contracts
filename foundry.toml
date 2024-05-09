@@ -6,5 +6,8 @@ libs = ["lib"]
 [profile.ci.fuzz]
 runs = 10_000
 
-# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
-fs_permissions = [{ access = "read", path = "lib/foundry-chainlink-toolkit/out"}]
+[rpc_endpoints]
+sepolia = "${SEPOLIA_RPC_URL}"
+
+[etherscan]
+sepolia = { key = "${ETHERSCAN_API_KEY}" }
