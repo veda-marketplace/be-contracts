@@ -5,13 +5,12 @@ import {FunctionsClient} from "@chainlink/contracts/v0.8/functions/dev/v1_0_0/Fu
 import {ConfirmedOwner} from "@chainlink/contracts/v0.8/shared/access/ConfirmedOwner.sol";
 import {FunctionsRequest} from "@chainlink/contracts/v0.8/functions/dev/v1_0_0/libraries/FunctionsRequest.sol";
 
-
 /**
- * @title AnalyticsAPICaller
- * @notice This is a contract to make HTTP requests using Chainlink function to analytics API
+ * @title CopyrightAPICaller
+ * @notice This is a contract to make HTTP requests using Chainlink function to discord bot api.
  * @dev This contract uses hardcoded values and should not be used in production.
  */
-contract AnalyticsAPICaller is FunctionsClient, ConfirmedOwner {
+contract CopyrightAPICaller is FunctionsClient, ConfirmedOwner {
     using FunctionsRequest for FunctionsRequest.Request;
 
     // State variables to store the last request ID, response, and error
@@ -40,7 +39,7 @@ contract AnalyticsAPICaller is FunctionsClient, ConfirmedOwner {
     string source =
         "const ipfsHash = args[0];"
         "const apiResponse = await Functions.makeHttpRequest({"
-        "url: `https://veda-analytics-api-gl5bbi32cq-ts.a.run.app/api/identify/${ipfsHash}`"
+        "url: `http://35.201.6.95:7000/api/avatar/${ipfsHash}`"
         "});"
         "if (apiResponse.error) {"
         "throw Error('Request failed');"
