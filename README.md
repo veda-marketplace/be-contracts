@@ -3,7 +3,7 @@
 ## Welcome to the VeDA Verifiable Digital Assets Platform
 
 <p align="center" width="100%">
-  <img src="https://imgur.com/n6OHZjq.png" alt="site"/>
+  <img src="https://imgur.com/C0ZxuSg.png" alt="site"/>
 </p>
 
 > ## Table of contents
